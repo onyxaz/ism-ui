@@ -1,13 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-100 text-gray-800;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input, select, textarea {
+  @apply border px-3 py-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300;
+}
+
+table {
+  @apply w-full border border-gray-200 mt-6;
+}
+
+thead {
+  @apply bg-gray-100;
+}
+
+th, td {
+  @apply px-4 py-2 text-left border-b text-sm;
+  cursor: pointer;
+}
+
+tr:hover {
+  @apply bg-gray-50;
+}
+
+.widget {
+  @apply bg-white shadow rounded-lg p-6 text-center;
+}
+
+.widget-title {
+  @apply text-sm text-gray-500 font-medium;
+}
+
+.widget-value {
+  @apply text-2xl font-bold text-gray-800 mt-1;
+}
+
+.table-filter {
+  @apply mb-4 flex flex-wrap items-center justify-between gap-2;
+}
+
+.table-filter input {
+  @apply px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300;
+}
+
+.table-filter select {
+  @apply px-3 py-2 border rounded shadow-sm;
+}
+
+.pagination {
+  @apply flex justify-center mt-6 space-x-2;
+}
+
+.pagination button {
+  @apply px-3 py-1 border rounded hover:bg-blue-100 text-sm;
+}
+
+.pagination .active {
+  @apply bg-blue-500 text-white;
 }

@@ -11,9 +11,9 @@ const DashboardPage = () => {
     const fetchData = async () => {
       try {
         const [salesRes, expensesRes, inventoryRes] = await Promise.all([
-          axios.get('/sales/summary/'),
-          axios.get('/business-expenses/summary/'),
-          axios.get('/inventory/logs/?action=low_stock'),
+          axios.get('api/sales/summary/'),
+          axios.get('api/business-expenses/summary/'),
+          axios.get('api/inventory/logs/?action=low_stock'),
         ]);
 
         setSalesSummary(salesRes.data);

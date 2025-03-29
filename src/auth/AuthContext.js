@@ -8,7 +8,10 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     try {
       const stored = localStorage.getItem('token');
-      return stored ? jwtDecode(stored) : null;
+      if (!stored) return null;
+      const decoded = jwtDecode(stored);
+      decoded.role = decoded.role?.toLowerCase();
+      return decoded;
     } catch {
       return null;
     }
@@ -17,7 +20,9 @@ export const AuthProvider = ({ children }) => {
   const login = (newToken) => {
     localStorage.setItem('token', newToken);
     setToken(newToken);
-    setUser(jwtDecode(newToken));
+    const decoded = jwtDecode(newToken);
+    decoded.role = decoded.role?.toLowerCase();
+    setUser(decoded);
   };
 
   const logout = () => {
@@ -28,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
   const isAdmin = user?.role === 'admin';
   const isManager = user?.role === 'manager';
-  const isCashier = user?.role === 'cashier';
+  const isCashier = user?.role === 'sales';
 
   const auth = {
     token,

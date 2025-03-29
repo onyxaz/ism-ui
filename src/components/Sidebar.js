@@ -4,39 +4,37 @@ import AuthContext from '../auth/AuthContext';
 
 const Sidebar = () => {
   const { auth, logout } = useContext(AuthContext);
-
+  const role = auth?.user?.role;
   if (!auth?.user) return null;
 
-  const { role } = auth.user;
-
   return (
-    <aside className="w-64 bg-white shadow-md p-4">
-      <h2 className="text-xl font-bold mb-6">ISM</h2>
-      <nav>
-        <ul className="space-y-2">
-          <li><Link className="block hover:text-blue-500" to="/dashboard">Dashboard</Link></li>
-          <li><Link className="block hover:text-blue-500" to="/products">Products</Link></li>
-          <li><Link className="block hover:text-blue-500" to="/categories">Categories</Link></li>
-          <li><Link className="block hover:text-blue-500" to="/inventory/logs">Inventory</Link></li>
-          <li><Link className="block hover:text-blue-500" to="/sales">Sales</Link></li>
-          <li><Link className="block hover:text-blue-500" to="/expenses">Expenses</Link></li>
-          <li><Link className="block hover:text-blue-500" to="/vendors">Vendors</Link></li>
-          <li><Link className="block hover:text-blue-500" to="/orders">Orders</Link></li>
-          {role === 'admin' && (
-            <li><Link className="block hover:text-blue-500" to="/users">Users</Link></li>
-          )}
-          <li>
-            <button
-              className="mt-4 w-full text-left text-red-500 hover:underline"
-              onClick={logout}
-            >
-              Logout
-            </button>
-          </li>
-        </ul>
+    <aside className="w-64 bg-white shadow-md border-r min-h-screen p-4">
+      <h2 className="text-2xl font-bold text-blue-600 mb-6">ISM</h2>
+      <nav className="space-y-2">
+        <SidebarLink to="/dashboard" label="Dashboard" />
+        <SidebarLink to="/products" label="Products" />
+        <SidebarLink to="/categories" label="Categories" />
+        <SidebarLink to="/inventory/logs" label="Inventory" />
+        <SidebarLink to="/sales" label="Sales" />
+        <SidebarLink to="/expenses" label="Expenses" />
+        <SidebarLink to="/vendors" label="Vendors" />
+        <SidebarLink to="/orders" label="Orders" />
+        {role === 'admin' && <SidebarLink to="/users" label="Users" />}
+        <button
+          onClick={logout}
+          className="mt-6 w-full text-left text-red-500 hover:underline text-sm"
+        >
+          Logout
+        </button>
       </nav>
     </aside>
   );
 };
+
+const SidebarLink = ({ to, label }) => (
+  <Link to={to} className="block px-2 py-1 rounded hover:bg-blue-100 transition-colors text-sm">
+    {label}
+  </Link>
+);
 
 export default Sidebar;
