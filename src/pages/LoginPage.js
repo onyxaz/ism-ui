@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import axios from '../api/axiosInstance'; 
 import AuthContext from '../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
