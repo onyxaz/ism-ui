@@ -10,27 +10,32 @@ const Sidebar = () => {
   const { role } = auth.user;
 
   return (
-    <div style={{ width: 200, background: '#f2f2f2', height: '100vh', padding: 20 }}>
-      <h3>ISM</h3>
+    <aside className="w-64 bg-white shadow-md p-4">
+      <h2 className="text-xl font-bold mb-6">ISM</h2>
       <nav>
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          <li><Link to="/dashboard">Dashboard</Link></li>
-          <li><Link to="/products">Products</Link></li>
-          <li><Link to="/categories">Categories</Link></li>
-          <li><Link to="/inventory/logs">Inventory</Link></li>
-          <li><Link to="/sales">Sales</Link></li>
-          <li><Link to="/expenses">Expenses</Link></li>
-          <li><Link to="/vendors">Vendors</Link></li>
-          <li><Link to="/orders">Orders</Link></li>
-
-          {(role === 'admin') && (
-            <li><Link to="/users">User Management</Link></li>
+        <ul className="space-y-2">
+          <li><Link className="block hover:text-blue-500" to="/dashboard">Dashboard</Link></li>
+          <li><Link className="block hover:text-blue-500" to="/products">Products</Link></li>
+          <li><Link className="block hover:text-blue-500" to="/categories">Categories</Link></li>
+          <li><Link className="block hover:text-blue-500" to="/inventory/logs">Inventory</Link></li>
+          <li><Link className="block hover:text-blue-500" to="/sales">Sales</Link></li>
+          <li><Link className="block hover:text-blue-500" to="/expenses">Expenses</Link></li>
+          <li><Link className="block hover:text-blue-500" to="/vendors">Vendors</Link></li>
+          <li><Link className="block hover:text-blue-500" to="/orders">Orders</Link></li>
+          {role === 'admin' && (
+            <li><Link className="block hover:text-blue-500" to="/users">Users</Link></li>
           )}
-
-          <li><button onClick={logout}>Logout</button></li>
+          <li>
+            <button
+              className="mt-4 w-full text-left text-red-500 hover:underline"
+              onClick={logout}
+            >
+              Logout
+            </button>
+          </li>
         </ul>
       </nav>
-    </div>
+    </aside>
   );
 };
 
